@@ -2374,5 +2374,93 @@
     "node": "Droplet-NYC",
     "technique": "GET /firebase%2ejson HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
     "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:27:47.790614+00:00",
+    "ip": "185.177.72.13",
+    "classification": "Configuration File Scanner",
+    "severity": "Medium",
+    "risk_score": 5,
+    "summary": "An attacker using curl attempted to locate a serverless configuration file, possibly to gain insight into the application's infrastructure.",
+    "node": "Droplet-NYC",
+    "technique": "GET /var/task/serverless%2eyml HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:28:17.931835+00:00",
+    "ip": "185.177.72.13",
+    "classification": "Credential Harvester",
+    "severity": "High",
+    "risk_score": 8,
+    "summary": "An attacker using curl attempted to access a Kubernetes configuration file, which could expose critical access credentials.",
+    "node": "Droplet-NYC",
+    "technique": "GET /%2ekube/config HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:29:13.846712+00:00",
+    "ip": "185.177.72.13",
+    "classification": "Vulnerability Scanner",
+    "severity": "Medium",
+    "risk_score": 5,
+    "summary": "An attacker using curl attempted to access the ELMAH error logging interface, likely seeking system errors and sensitive information.",
+    "node": "Droplet-NYC",
+    "technique": "GET /elmah%2eaxd HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:29:18.140352+00:00",
+    "ip": "185.177.72.13",
+    "classification": "CMS Scanner",
+    "severity": "Medium",
+    "risk_score": 5,
+    "summary": "An attacker using curl attempted to access the WordPress login page, likely as part of a reconnaissance or brute-force attempt.",
+    "node": "Droplet-NYC",
+    "technique": "GET /wp-login%2ephp HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:30:04.869156+00:00",
+    "ip": "176.65.139.66",
+    "classification": "Network Scanner",
+    "severity": "Low",
+    "risk_score": 2,
+    "summary": "A Shodan bot performed a general scan for open ports and services.",
+    "node": "Droplet-LON",
+    "technique": "GET / HTTP/1.0\r\nHost: 134.209.18.105\r\nUser-Agent: Shodan-Pull/1.0\r\nConnection: close",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:30:22.642517+00:00",
+    "ip": "185.177.72.13",
+    "classification": "Cloud Config Scanner",
+    "severity": "Medium",
+    "risk_score": 6,
+    "summary": "An attacker using curl attempted to locate AWS Amplify configuration files, which could reveal infrastructure details.",
+    "node": "Droplet-NYC",
+    "technique": "GET /amplify/team-provider-info%2ejson HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T20:47:44.922166+00:00",
+    "ip": "66.132.186.187",
+    "classification": "Network Scanner",
+    "severity": "Low",
+    "risk_score": 2,
+    "summary": "A Censys bot performed a general scan for open ports and services.",
+    "node": "Droplet-LON",
+    "technique": "GET /favicon.ico HTTP/1.1\r\nHost: 134.209.18.105\r\nUser-Agent: Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)\r\nAccept-Encoding: gzip\r\nConnection: close",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:30:39.882529+00:00",
+    "ip": "185.177.72.13",
+    "classification": "Infrastructure-as-Code Scanner",
+    "severity": "High",
+    "risk_score": 8,
+    "summary": "An attacker using curl attempted to access a Terraform lock file, which could reveal infrastructure state details.",
+    "node": "Droplet-NYC",
+    "technique": "GET /%2eterraform%2elock%2ehcl HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
+    "total_attacks": 1
   }
 ]
