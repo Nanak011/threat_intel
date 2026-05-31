@@ -2242,5 +2242,93 @@
     "node": "Droplet-BLR",
     "technique": "GET / HTTP/1.1\r\nHost: 168.144.120.121\r\nUser-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.16 (KHTML, like Gecko) Chrome/10.0.648.133 Safari/534.16\r\nAccept: */*\r\nAccept-Encoding: deflate, gzip\r\nAccept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
     "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:21:11.153968+00:00",
+    "ip": "185.177.72.13",
+    "classification": "Information Gathering",
+    "severity": "Medium",
+    "risk_score": 5,
+    "summary": "An automated scanner attempted to access a common environment configuration file.",
+    "node": "Droplet-NYC",
+    "technique": "GET /env HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:21:27.429652+00:00",
+    "ip": "79.124.40.174",
+    "classification": "Vulnerability Scan (Apache Solr)",
+    "severity": "Medium",
+    "risk_score": 6,
+    "summary": "An attacker attempted to access Apache Solr system information, likely for reconnaissance of vulnerabilities.",
+    "node": "Droplet-BLR",
+    "technique": "GET /solr/admin/info/system?wt=json HTTP/1.1\r\nHost: 168.144.120.121:80\r\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36\r\nAccept-Encoding: gzip\r\nConnection: close",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:21:28.404009+00:00",
+    "ip": "185.177.72.13",
+    "classification": "API Reconnaissance (WooCommerce)",
+    "severity": "Medium",
+    "risk_score": 5,
+    "summary": "An automated scanner probed a WooCommerce API endpoint, potentially for version or configuration information.",
+    "node": "Droplet-NYC",
+    "technique": "GET /wp-json/wc/v3/payment_gateways HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:21:49.915230+00:00",
+    "ip": "185.177.72.13",
+    "classification": "Credential Harvesting",
+    "severity": "High",
+    "risk_score": 7,
+    "summary": "An automated scanner attempted to access a potentially sensitive S3FS password file.",
+    "node": "Droplet-NYC",
+    "technique": "GET /.passwd-s3fs HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:21:58.530765+00:00",
+    "ip": "185.177.72.13",
+    "classification": "Path Traversal",
+    "severity": "High",
+    "risk_score": 8,
+    "summary": "An automated scanner attempted a path traversal attack to access a sensitive environment configuration file.",
+    "node": "Droplet-NYC",
+    "technique": "GET /cgi-bin/.%%32%65/.%%32%65/.%%32%65/.%%32%65/var/www/html/.env HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:22:02.952495+00:00",
+    "ip": "185.177.72.13",
+    "classification": "API Reconnaissance",
+    "severity": "Low",
+    "risk_score": 3,
+    "summary": "An automated scanner probed a common webhook endpoint.",
+    "node": "Droplet-NYC",
+    "technique": "GET /webhook HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T20:47:24.768935+00:00",
+    "ip": "66.132.186.187",
+    "classification": "Web Scanner",
+    "severity": "Low",
+    "risk_score": 1,
+    "summary": "A Censys web scanner requested the favicon of the site.",
+    "node": "Droplet-LON",
+    "technique": "GET /favicon.ico HTTP/1.1\r\nHost: 134.209.18.105\r\nUser-Agent: Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)\r\nAccept-Encoding: gzip\r\nConnection: close",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T22:34:35.852682+00:00",
+    "ip": "109.123.101.63",
+    "classification": "Network Probe",
+    "severity": "Low",
+    "risk_score": 1,
+    "summary": "A network probe initiated a connection handshake without an application layer payload.",
+    "node": "Droplet-NYC",
+    "technique": "[PING] Connection handshake initiated without payload text.",
+    "total_attacks": 1
   }
 ]
