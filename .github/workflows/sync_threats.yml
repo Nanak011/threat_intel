@@ -1,0 +1,182 @@
+name: Hourly Threat Intel Sync Pipeline
+
+on:
+  schedule:
+    - cron: '37 * * * *'
+  workflow_dispatch: 
+
+jobs:
+  analyze-and-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Repository History
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1 
+
+      - name: Setup Python Environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Pipeline Dependencies
+        run: pip install requests pytz google-genai
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Execute Gemini Intel Processing Script
+        if: always() 
+        env:
+          TZ: "Asia/Kathmandu" 
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: |
+          python - << 'EOF'
+          import os
+          import json
+          import requests
+          import sys
+          from datetime import datetime
+          import pytz
+          from google import genai
+
+          log_filename = "pipeline_status.log"
+          npt_timezone = pytz.timezone("Asia/Kathmandu")
+          
+          def log_status(message):
+              timestamp = datetime.now(npt_timezone).strftime("%Y-%m-%d %H:%M:%S")
+              log_entry = f"[{timestamp} NPT] {message}\n"
+              with open(log_filename, "a") as f:
+                  f.write(log_entry)
+              print(message)
+
+          url = os.environ["SUPABASE_URL"]
+          key = os.environ["SUPABASE_SERVICE_KEY"]
+          headers = {
+              "apikey": key,
+              "Authorization": f"Bearer {key}",
+              "Content-Type": "application/json"
+          }
+
+          try:
+              supabase_rest = f"{url}/rest/v1/intel_attacks?processed_by_ai=eq.false&limit=50"
+              response = requests.get(supabase_rest, headers=headers, timeout=10)
+              if response.status_code != 200:
+                  log_status(f"FAILURE: Database read error {response.status_code}: {response.text}")
+                  sys.exit(1)
+          except Exception as e:
+              log_status(f"FAILURE: Couldn't connect to Supabase: {str(e)}")
+              sys.exit(1)
+          
+          attacks = response.json()
+          if not attacks:
+              log_status("SUCCESS: Zero fresh threat logs detected. Stand down.")
+              sys.exit(0)
+
+          prompt_instruction = (
+              "You are an automated Cyber Threat Intelligence analyzer tracking a multi-node global honeypot network. "
+              "Analyze the following raw honeypot connection telemetry logs. "
+              "Extract data carefully and build a structured array containing these explicit keys for each log item:\n"
+              "1. 'timestamp': Extracted log timestamp.\n"
+              "2. 'ip': Attacker IP Address.\n"
+              "3. 'classification': Accurate threat class short name (e.g. 'Log4j Exploit', 'SQL Injection', 'Web Scanner').\n"
+              "4. 'severity': Accurately calculate the log severity based on context payload (e.g., 'Low', 'Medium', 'High', 'Critical').\n"
+              "5. 'risk_score': Provide an integer representing risk severity (e.g., between 1 and 10).\n"
+              "6. 'summary': 1-sentence broad conceptual description mapping what they wanted to achieve.\n"
+              "7. 'node': The string value provided in the log's 'node_name' column indicating origin honeypot tracker.\n"
+              "8. 'technique': CRITICAL. Isolate the exact, raw, low-level technical signature found in the payload text. "
+              "Do not use broad english explanations here. Instead, print the raw target parameters, payload arguments, "
+              "or dirty technical commands used (e.g., 'Payload: POST /wp-login.php Args: log=admin&pwd=123' or 'Target URI: /etc/passwd').\n"
+              "9. 'total_attacks': Provide an integer tracking the specific count of sequential requests or interactions packed inside that log session.\n\n"
+              "Output your analysis in a strict, valid JSON format matching this exact object structure inside the list:\n"
+              "{\n"
+              "  \"timestamp\": \"2026-05-30T09:32:11.864559+00:00\",\n"
+              "  \"ip\": \"8.216.85.238\",\n"
+              "  \"classification\": \"Web Scanner\",\n"
+              "  \"severity\": \"Low\",\n"
+              "  \"risk_score\": 2,\n"
+              "  \"summary\": \"A web scanner using curl initiated a standard GET request to the root directory.\",\n"
+              "  \"node\": \"Droplet-BLR\",\n"
+              "  \"technique\": \"GET / HTTP/1.1\\r\\nHost: 168.144.120.121\\r\\nUser-Agent: curl/7.78.0\\r\\nAccept: */*\",\n"
+              "  \"total_attacks\": 1\n"
+              "}\n"
+              "Return raw JSON text only. Do not wrap your response in markdown code blocks or formatting tick marks."
+          )
+
+          PROJECT_ID = "intel-498005"
+          LOCATION = "us-central1"
+
+          try:
+              client = genai.Client(vertexai=True, project=PROJECT_ID, location=LOCATION)
+          except Exception as e:
+              log_status(f"FAILURE: GenAI client initialization fault: {str(e)}")
+              sys.exit(1)
+
+          full_payload = f"{prompt_instruction}\n\nRaw Telemetry Data:\n{json.dumps(attacks)}"
+          ai_text = None
+
+          try:
+              response = client.models.generate_content(
+                  model="gemini-2.5-flash",
+                  contents=full_payload
+              )
+              ai_text = response.text
+          except Exception as e:
+              log_status(f"FAILURE: Gemini API unreachable: {str(e)}")
+              sys.exit(1)
+
+          ai_text = ai_text.strip()
+          if ai_text.startswith("```"):
+              ai_text = ai_text.replace("```json", "").replace("```", "").strip()
+          
+          try:
+              new_threat_records = json.loads(ai_text)
+          except Exception as e:
+              log_status(f"FAILURE: Malformed JSON compilation from AI model: {e}")
+              sys.exit(1)
+
+          feed_filename = "threat_feed.json"
+          historical_data = []
+          if os.path.exists(feed_filename):
+              try:
+                  with open(feed_filename, "r") as f:
+                      historical_data = json.load(f)
+              except Exception:
+                  historical_data = []
+
+          seen_signatures = {f"{item.get('ip')}|{item.get('classification')}|{item.get('node')}" for item in historical_data}
+          unique_additions = []
+          for t in new_threat_records:
+              signature = f"{t.get('ip')}|{t.get('classification')}|{t.get('node')}"
+              if signature not in seen_signatures:
+                  unique_additions.append(t)
+                  seen_signatures.add(signature)
+
+          if unique_additions:
+              final_feed = historical_data + unique_additions
+              with open(feed_filename, "w") as f:
+                  json.dump(final_feed, f, indent=2)
+          
+          processed_ids = [item['id'] for item in attacks]
+          for item_id in processed_ids:
+              update_url = f"{url}/rest/v1/intel_attacks?id=eq.{item_id}"
+              requests.patch(update_url, json={"processed_by_ai": True}, headers=headers)
+          
+          log_status(f"SUCCESS: Synced batch of {len(attacks)} logs into multi-node telemetry grid.")
+          EOF
+
+      - name: Commit and Push Updates to Repo
+        if: always()
+        run: |
+          git config --global user.name "automated-threat-intel-bot"
+          git config --global user.email "actions@github.com"
+          git add threat_feed.json pipeline_status.log || true
+          if git diff --staged --quiet; then
+            echo "No structural logging changes detected."
+          else
+            git commit -m "Automated Multi-Node Intel Feed Update"
+            git push origin main
+          fi
