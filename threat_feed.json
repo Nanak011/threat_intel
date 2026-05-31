@@ -2176,5 +2176,71 @@
     "node": "Droplet-NYC",
     "technique": "GET /package-updates/perform%2ecgi HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
     "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:17:52.989709+00:00",
+    "ip": "185.177.72.13",
+    "classification": "Reconnaissance Scan",
+    "severity": "Medium",
+    "risk_score": 5,
+    "summary": "An attacker scanned for a common administrative interface page.",
+    "node": "Droplet-NYC",
+    "technique": "GET /admin%2ehtml HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:17:57.281380+00:00",
+    "ip": "185.177.72.13",
+    "classification": "Sensitive File Disclosure",
+    "severity": "Medium",
+    "risk_score": 6,
+    "summary": "An attacker attempted to discover application production log files.",
+    "node": "Droplet-NYC",
+    "technique": "GET /log/production%2elog HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:19:06.184652+00:00",
+    "ip": "185.177.72.13",
+    "classification": "Information Disclosure",
+    "severity": "Medium",
+    "risk_score": 5,
+    "summary": "An attacker scanned for common PHP information disclosure pages.",
+    "node": "Droplet-NYC",
+    "technique": "GET /info%2ephp HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:20:28.075503+00:00",
+    "ip": "185.177.72.13",
+    "classification": "Sensitive Information Disclosure",
+    "severity": "High",
+    "risk_score": 7,
+    "summary": "An attacker attempted to discover JSON Web Key Set (JWKS) endpoints.",
+    "node": "Droplet-NYC",
+    "technique": "GET /%2ewell-known/jwks%2ejson HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T22:33:55.484767+00:00",
+    "ip": "173.255.221.189",
+    "classification": "Network Ping",
+    "severity": "Low",
+    "risk_score": 1,
+    "summary": "A network ping was initiated to check host availability.",
+    "node": "Droplet-NYC",
+    "technique": "[PING] Connection handshake initiated without payload text.",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:20:51.031593+00:00",
+    "ip": "8.216.80.236",
+    "classification": "Web Scanner",
+    "severity": "Low",
+    "risk_score": 2,
+    "summary": "A web scanner performed a basic GET request to the root directory.",
+    "node": "Droplet-BLR",
+    "technique": "GET / HTTP/1.1\r\nHost: 168.144.120.121\r\nUser-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.16 (KHTML, like Gecko) Chrome/10.0.648.133 Safari/534.16\r\nAccept: */*\r\nAccept-Encoding: deflate, gzip\r\nAccept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+    "total_attacks": 1
   }
 ]
