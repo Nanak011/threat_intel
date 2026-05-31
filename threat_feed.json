@@ -2330,5 +2330,49 @@
     "node": "Droplet-NYC",
     "technique": "[PING] Connection handshake initiated without payload text.",
     "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:24:29.278657+00:00",
+    "ip": "185.177.72.13",
+    "classification": "Vulnerability Scan (Webmin/CGI)",
+    "severity": "Medium",
+    "risk_score": 5,
+    "summary": "A scanner attempted to discover Webmin or CGI-based application vulnerabilities.",
+    "node": "Droplet-NYC",
+    "technique": "GET /package-updates/update%2ecgi HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:24:50.774164+00:00",
+    "ip": "185.177.72.13",
+    "classification": "Web Scanner",
+    "severity": "Low",
+    "risk_score": 3,
+    "summary": "A web scanner probed for Next.js framework-specific endpoints.",
+    "node": "Droplet-NYC",
+    "technique": "GET /__nextjs_action HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:25:16.656973+00:00",
+    "ip": "185.177.72.13",
+    "classification": "Database/Service Enumeration",
+    "severity": "High",
+    "risk_score": 7,
+    "summary": "A scanner probed for exposed database or service ports via HTTP, specifically targeting MongoDB.",
+    "node": "Droplet-NYC",
+    "technique": "GET /:27017 HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:26:04.015464+00:00",
+    "ip": "185.177.72.13",
+    "classification": "Sensitive File Disclosure Scan",
+    "severity": "High",
+    "risk_score": 8,
+    "summary": "A scanner attempted to discover sensitive Firebase configuration files.",
+    "node": "Droplet-NYC",
+    "technique": "GET /firebase%2ejson HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
+    "total_attacks": 1
   }
 ]
