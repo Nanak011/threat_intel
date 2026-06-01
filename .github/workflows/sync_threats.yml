@@ -62,7 +62,7 @@ jobs:
           }
 
           try:
-              supabase_rest = f"{url}/rest/v1/intel_attacks?processed_by_ai=eq.false&limit=50"
+              supabase_rest = f"{url}/rest/v1/intel_attacks?processed_by_ai=eq.false&limit=100"
               response = requests.get(supabase_rest, headers=headers, timeout=10)
               if response.status_code != 200:
                   log_status(f"FAILURE: Database read error {response.status_code}: {response.text}")
