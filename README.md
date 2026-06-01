@@ -13,7 +13,7 @@ The interactive 3D threat globe and live analysis table are deployed and streami
 1. **Edge Honeypot Nodes:** Lightweight Linux droplets deployed across global regions (London, New York, Bangalore) capturing unauthorized connection payloads, scans, and exploit attempts.
 2. **Central Logging Backend:** Raw TCP/UDP network telemetry is immediately streamed and cataloged inside a secure Supabase database instance.
 3. **Automated AI Processing Pipeline:** A background GitHub Actions workflow triggers cron schedule to fetch unprocessed attack logs sequentially. 
-4. **Threat Intelligence Extraction:** The pipeline utilizes the Gemini large language model to parse raw hacker commands, classify the attack vectors (e.g., Log4j exploits, automated web scanners, credential stuffing), extract unique technical signatures, and deduplicate repeating botnet spam.
+4. **Threat Intelligence Extraction:** The pipeline utilizes the Gemini large language model to parse raw commands, classify the attack vectors (e.g., Log4j exploits, automated web scanners, credential stuffing), extract unique technical signatures, and deduplicate repeating botnet spam.
 5. **State Synchronization:** Cleaned data structures are appended to a historical global threat ledger (`threat_feed.json`), while database records are updated to prevent reprocessing loops.
 
 ---
@@ -23,7 +23,7 @@ The interactive 3D threat globe and live analysis table are deployed and streami
 * **Infrastructure:** DigitalOcean (Multi-Node Droplets)
 * **Database:** Supabase (PostgreSQL)
 * **Automation Engine:** GitHub Actions (Python 3.11 Runtime)
-* **Core CTI Engine:** Google Gemini API 
+* **Core CTI Engine:** Vertex AI Gemini API 
 * **Frontend Visualization:** HTML5 / Tailwind CSS / Three.js (Deployed via GitHub Pages) / FreeIPAPI
 
 ---
