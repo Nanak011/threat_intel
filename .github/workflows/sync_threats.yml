@@ -39,9 +39,11 @@ jobs:
           import json
           import requests
           import sys
+          import time
           from datetime import datetime
           import pytz
           from google import genai
+          from google.genai import types
 
           log_filename = "pipeline_status.log"
           npt_timezone = pytz.timezone("Asia/Kathmandu")
@@ -60,21 +62,6 @@ jobs:
               "Authorization": f"Bearer {key}",
               "Content-Type": "application/json"
           }
-
-          try:
-              supabase_rest = f"{url}/rest/v1/intel_attacks?processed_by_ai=eq.false&limit=100"
-              response = requests.get(supabase_rest, headers=headers, timeout=10)
-              if response.status_code != 200:
-                  log_status(f"FAILURE: Database read error {response.status_code}: {response.text}")
-                  sys.exit(1)
-          except Exception as e:
-              log_status(f"FAILURE: Couldn't connect to Supabase: {str(e)}")
-              sys.exit(1)
-          
-          attacks = response.json()
-          if not attacks:
-              log_status("SUCCESS: Zero fresh threat logs detected. Stand down.")
-              sys.exit(0)
 
           prompt_instruction = (
               "You are an automated Cyber Threat Intelligence analyzer tracking a multi-node global honeypot network. "
@@ -103,7 +90,6 @@ jobs:
               "  \"technique\": \"GET / HTTP/1.1\\r\\nHost: 168.144.120.121\\r\\nUser-Agent: curl/7.78.0\\r\\nAccept: */*\",\n"
               "  \"total_attacks\": 1\n"
               "}\n"
-              "Return raw JSON text only. Do not wrap your response in markdown code blocks or formatting tick marks."
           )
 
           PROJECT_ID = "intel-498005"
@@ -115,57 +101,83 @@ jobs:
               log_status(f"FAILURE: GenAI client initialization fault: {str(e)}")
               sys.exit(1)
 
-          full_payload = f"{prompt_instruction}\n\nRaw Telemetry Data:\n{json.dumps(attacks)}"
-          ai_text = None
-
-          try:
-              response = client.models.generate_content(
-                  model="gemini-2.5-flash",
-                  contents=full_payload
-              )
-              ai_text = response.text
-          except Exception as e:
-              log_status(f"FAILURE: Gemini API unreachable: {str(e)}")
-              sys.exit(1)
-
-          ai_text = ai_text.strip()
-          if ai_text.startswith("```"):
-              ai_text = ai_text.replace("```json", "").replace("```", "").strip()
-          
-          try:
-              new_threat_records = json.loads(ai_text)
-          except Exception as e:
-              log_status(f"FAILURE: Malformed JSON compilation from AI model: {e}")
-              sys.exit(1)
-
-          feed_filename = "threat_feed.json"
-          historical_data = []
-          if os.path.exists(feed_filename):
+          # --- START OF THE BACKLOG CHURN LOOP ---
+          loop_count = 0
+          while True:
+              loop_count += 1
               try:
-                  with open(feed_filename, "r") as f:
-                      historical_data = json.load(f)
-              except Exception:
-                  historical_data = []
+                  # Fetch a safe window of 40 rows per iteration
+                  supabase_rest = f"{url}/rest/v1/intel_attacks?processed_by_ai=eq.false&limit=40"
+                  response = requests.get(supabase_rest, headers=headers, timeout=10)
+                  if response.status_code != 200:
+                      log_status(f"FAILURE: Database read error {response.status_code}: {response.text}")
+                      sys.exit(1)
+              except Exception as e:
+                  log_status(f"FAILURE: Couldn't connect to Supabase: {str(e)}")
+                  sys.exit(1)
+              
+              attacks = response.json()
+              if not attacks:
+                  log_status(f"SUCCESS: No further unprocessed logs found. Cleared backlog across {loop_count-1} cycles.")
+                  break
 
-          seen_signatures = {f"{item.get('ip')}|{item.get('classification')}|{item.get('node')}" for item in historical_data}
-          unique_additions = []
-          for t in new_threat_records:
-              signature = f"{t.get('ip')}|{t.get('classification')}|{t.get('node')}"
-              if signature not in seen_signatures:
-                  unique_additions.append(t)
-                  seen_signatures.add(signature)
+              log_status(f"PROCESSING: Found batch of {len(attacks)} logs. Initiating AI cycle {loop_count}...")
+              full_payload = f"{prompt_instruction}\n\nRaw Telemetry Data:\n{json.dumps(attacks)}"
+              ai_text = None
 
-          if unique_additions:
-              final_feed = historical_data + unique_additions
-              with open(feed_filename, "w") as f:
-                  json.dump(final_feed, f, indent=2)
-          
-          processed_ids = [item['id'] for item in attacks]
-          for item_id in processed_ids:
-              update_url = f"{url}/rest/v1/intel_attacks?id=eq.{item_id}"
-              requests.patch(update_url, json={"processed_by_ai": True}, headers=headers)
-          
-          log_status(f"SUCCESS: Synced batch of {len(attacks)} logs into multi-node telemetry grid.")
+              try:
+                  response = client.models.generate_content(
+                      model="gemini-2.5-flash",
+                      contents=full_payload,
+                      config=types.GenerateContentConfig(
+                          response_mime_type="application/json"
+                      )
+                  )
+                  ai_text = response.text.strip()
+              except Exception as e:
+                  log_status(f"FAILURE: Gemini API unreachable on cycle {loop_count}: {str(e)}")
+                  sys.exit(1)
+              
+              try:
+                  new_threat_records = json.loads(ai_text)
+              except Exception as e:
+                  log_status(f"FAILURE: Malformed JSON on loop {loop_count}: {e}")
+                  sys.exit(1)
+
+              feed_filename = "threat_feed.json"
+              historical_data = []
+              if os.path.exists(feed_filename):
+                  try:
+                      with open(feed_filename, "r") as f:
+                          historical_data = json.load(f)
+                  except Exception:
+                      historical_data = []
+
+              seen_signatures = {f"{item.get('ip')}|{item.get('classification')}|{item.get('node')}" for item in historical_data}
+                  
+              unique_additions = []
+              for t in new_threat_records:
+                  signature = f"{t.get('ip')}|{t.get('classification')}|{t.get('node')}"
+                  if signature not in seen_signatures:
+                      unique_additions.append(t)
+                      seen_signatures.add(signature)
+
+              if unique_additions:
+                  final_feed = historical_data + unique_additions
+                  with open(feed_filename, "w") as f:
+                      json.dump(final_feed, f, indent=2)
+              
+              # Mark this batch as completed so the next loop ignores them
+              processed_ids = [item['id'] for item in attacks]
+              for item_id in processed_ids:
+                  update_url = f"{url}/rest/v1/intel_attacks?id=eq.{item_id}"
+                  requests.patch(update_url, json={"processed_by_ai": True}, headers=headers)
+              
+              log_status(f"BATCH COMPLETE: Successfully committed cycle {loop_count}.")
+              
+              # Small cooldown to satisfy rate limits (RPM) smoothly
+              time.sleep(3)
+          # --- END OF THE LOOP ---
           EOF
 
       - name: Commit and Push Updates to Repo
