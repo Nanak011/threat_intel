@@ -2462,5 +2462,126 @@
     "node": "Droplet-NYC",
     "technique": "GET /%2eterraform%2elock%2ehcl HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
     "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:31:14.328021+00:00",
+    "ip": "185.177.72.13",
+    "classification": "Configuration File Exposure Attempt",
+    "severity": "Medium",
+    "risk_score": 5,
+    "summary": "An attacker sought to find a CircleCI configuration file, which may reveal pipeline details or credentials.",
+    "node": "Droplet-NYC",
+    "technique": "GET /%2ecircleci/config%2eyml HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:31:18.622857+00:00",
+    "ip": "185.177.72.13",
+    "classification": "Environment File Disclosure Scan",
+    "severity": "Medium",
+    "risk_score": 5,
+    "summary": "An attacker attempted to locate a Docker environment file, potentially exposing container details.",
+    "node": "Droplet-NYC",
+    "technique": "GET /%2edockerenv HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:31:22.890912+00:00",
+    "ip": "45.205.1.247",
+    "classification": "Web Scanner",
+    "severity": "Low",
+    "risk_score": 2,
+    "summary": "A web scanner using curl initiated a standard GET request to the root directory.",
+    "node": "Droplet-BLR",
+    "technique": "GET / HTTP/1.1\r\nUser-Agent: curl/7.68.0\r\nConnection: close",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:31:22.919717+00:00",
+    "ip": "185.177.72.13",
+    "classification": "Source Code Exposure Scan",
+    "severity": "Medium",
+    "risk_score": 6,
+    "summary": "An attacker attempted to access a Git configuration file, which could expose repository details.",
+    "node": "Droplet-NYC",
+    "technique": "GET /%2egit/config HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:31:31.509917+00:00",
+    "ip": "185.177.72.13",
+    "classification": "AWS Configuration Exposure Attempt",
+    "severity": "High",
+    "risk_score": 7,
+    "summary": "An attacker attempted to access an AWS S3 environment file, potentially exposing cloud credentials.",
+    "node": "Droplet-NYC",
+    "technique": "GET /aws/s3/env%2eenv HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T20:48:40.002304+00:00",
+    "ip": "66.132.172.217",
+    "classification": "Network Ping",
+    "severity": "Low",
+    "risk_score": 1,
+    "summary": "A basic network ping was received, indicating a host reachability check.",
+    "node": "Droplet-BLR",
+    "technique": "[PING] Connection handshake initiated without payload text.",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T20:48:49.595385+00:00",
+    "ip": "66.132.172.217",
+    "classification": "OSINT Scanner",
+    "severity": "Low",
+    "risk_score": 3,
+    "summary": "An OSINT scanner from Censys performed a GET request to the root directory.",
+    "node": "Droplet-BLR",
+    "technique": "GET / HTTP/1.1\r\nHost: 168.144.120.121\r\nUser-Agent: Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)\r\nAccept: */*\r\nAccept-Encoding: gzip",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:32:18.946847+00:00",
+    "ip": "185.177.72.13",
+    "classification": "Laravel Environment File Disclosure Scan",
+    "severity": "Medium",
+    "risk_score": 6,
+    "summary": "An attacker attempted to access a Laravel application environment file, potentially exposing configurations and credentials.",
+    "node": "Droplet-NYC",
+    "technique": "GET /laravel/%2eenv HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T20:49:00.803719+00:00",
+    "ip": "80.233.248.23",
+    "classification": "OSINT Scanner",
+    "severity": "Low",
+    "risk_score": 3,
+    "summary": "An OSINT scanner using ivre-masscan performed a GET request to the root directory.",
+    "node": "Droplet-NYC",
+    "technique": "GET / HTTP/1.0\r\nUser-Agent: ivre-masscan/1.3 https://github.com/robertdavidgraham/\r\nAccept: */*",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:33:14.804190+00:00",
+    "ip": "79.124.40.174",
+    "classification": "Debugging Tool Exposure Scan",
+    "severity": "Medium",
+    "risk_score": 4,
+    "summary": "An attacker scanned for XDebug session exposure, which could lead to remote code execution.",
+    "node": "Droplet-LON",
+    "technique": "GET /?XDEBUG_SESSION_START=phpstorm HTTP/1.1\r\nHost: 134.209.18.105:80\r\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36\r\nAccept-Encoding: gzip\r\nConnection: close",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:33:53.628228+00:00",
+    "ip": "185.177.72.13",
+    "classification": "CI/CD Configuration Exposure Attempt",
+    "severity": "High",
+    "risk_score": 7,
+    "summary": "An attacker attempted to access GitHub Actions workflow configurations, which could reveal build processes and secrets.",
+    "node": "Droplet-NYC",
+    "technique": "GET /%2egithub/workflows HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: curl/8.7.1\r\nAccept: */*\r\nAccept-Encoding: gzip\r\nAccept-Language: en-US,en;q=0.9\r\nX-Forwarded-For: 127.0.0.1\r\nX-Real-IP: 127.0.0.1\r\nX-Originating-IP: 127.0.0.1\r\nX-Client-IP: 127.0.0.1\r\nTrue-Client-IP: 127.0.0.1\r\nX-Azure-ClientIP: 127.0.0.1\r\nX-Azure-SocketIP: 127.0.0.1\r\nX-Host: 127.0.0.1\r\nX-Forwared: 127.0.0.1",
+    "total_attacks": 1
   }
 ]
