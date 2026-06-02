@@ -101,12 +101,10 @@ jobs:
               log_status(f"FAILURE: GenAI client initialization fault: {str(e)}")
               sys.exit(1)
 
-          # --- START OF THE BACKLOG CHURN LOOP ---
           loop_count = 0
           while True:
               loop_count += 1
               try:
-                  # Fetch a safe window of 40 rows per iteration
                   supabase_rest = f"{url}/rest/v1/intel_attacks?processed_by_ai=eq.false&limit=40"
                   response = requests.get(supabase_rest, headers=headers, timeout=10)
                   if response.status_code != 200:
@@ -167,7 +165,6 @@ jobs:
                   with open(feed_filename, "w") as f:
                       json.dump(final_feed, f, indent=2)
               
-              # Mark this batch as completed so the next loop ignores them
               processed_ids = [item['id'] for item in attacks]
               for item_id in processed_ids:
                   update_url = f"{url}/rest/v1/intel_attacks?id=eq.{item_id}"
@@ -175,9 +172,7 @@ jobs:
               
               log_status(f"BATCH COMPLETE: Successfully committed cycle {loop_count}.")
               
-              # Small cooldown to satisfy rate limits (RPM) smoothly
               time.sleep(3)
-          # --- END OF THE LOOP ---
           EOF
 
       - name: Commit and Push Updates to Repo
