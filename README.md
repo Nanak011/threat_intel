@@ -29,7 +29,8 @@ The interactive 3D threat globe and live analysis table are deployed and streami
 ---
 
 ## Security & Optimization Principles
-
+* **Zero-Root Privilege Execution:** To enforce strict Principle of Least Privilege, the edge socket engine is completely decoupled from administrative root access. The listener executes under an isolated, highly restricted system account (threatuser).Rather than defaulting to sudo execution paths to listen on privileged ports, the environment leverages the Linux kernel capability framework using (`cap_net_bind_service`).
 * **Deduplication Shield:** The processing engine builds unique signature hashes based on `IP | Classification | Node Location`. Repeating brute-force or socket-flooding attacks are consolidated dynamically to keep frontend loading speeds optimized.
 * **Fail-Safe Execution State:** Database sync state flags mutate *inside* the secure execution thread before repository updates commit. This eliminates duplicate token processing even during upstream network connection drops.
-<img width="1919" height="973" alt="image" src="https://github.com/user-attachments/assets/b750a37c-69d2-4aed-99e6-479964b4cf28" />
+
+<img width="1919" height="971" alt="image" src="https://github.com/user-attachments/assets/9d50f8db-3543-4076-b26a-3d8f0b02134c" />
