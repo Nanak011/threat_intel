@@ -478,3 +478,37 @@
 [2026-06-04 08:11:53 NPT] WARNING: Malformed JSON on loop 26: Unterminated string starting at: line 181 column 13 (char 7738). Skipping batch to maintain continuity.
 [2026-06-04 08:11:53 NPT] CIRCUIT BREAKER: Cleanly flushed batch 26 items from queue.
 [2026-06-04 08:11:56 NPT] SUCCESS: No further unprocessed logs found. Cleared backlog across 26 cycles.
+[2026-06-04 12:54:34 NPT] PROCESSING: Found batch of 40 logs. Initiating AI cycle 1...
+[2026-06-04 12:55:07 NPT] WARNING: Malformed JSON on loop 1: Expecting property name enclosed in double quotes: line 16 column 31 (char 668). Skipping batch to maintain continuity.
+[2026-06-04 12:55:07 NPT] CIRCUIT BREAKER: Cleanly flushed batch 1 items from queue.
+[2026-06-04 12:55:11 NPT] PROCESSING: Found batch of 40 logs. Initiating AI cycle 2...
+[2026-06-04 12:55:46 NPT] WARNING: Malformed JSON on loop 2: Unterminated string starting at: line 88 column 20 (char 5141). Skipping batch to maintain continuity.
+[2026-06-04 12:55:46 NPT] CIRCUIT BREAKER: Cleanly flushed batch 2 items from queue.
+[2026-06-04 12:55:50 NPT] PROCESSING: Found batch of 40 logs. Initiating AI cycle 3...
+[2026-06-04 12:56:24 NPT] WARNING: Malformed JSON on loop 3: Unterminated string starting at: line 16 column 13 (char 658). Skipping batch to maintain continuity.
+[2026-06-04 12:56:24 NPT] CIRCUIT BREAKER: Cleanly flushed batch 3 items from queue.
+[2026-06-04 12:56:28 NPT] PROCESSING: Found batch of 40 logs. Initiating AI cycle 4...
+[2026-06-04 12:57:01 NPT] WARNING: Malformed JSON on loop 4: Unterminated string starting at: line 22 column 20 (char 774). Skipping batch to maintain continuity.
+[2026-06-04 12:57:02 NPT] CIRCUIT BREAKER: Cleanly flushed batch 4 items from queue.
+[2026-06-04 12:57:05 NPT] PROCESSING: Found batch of 40 logs. Initiating AI cycle 5...
+[2026-06-04 12:57:40 NPT] WARNING: Malformed JSON on loop 5: Unterminated string starting at: line 297 column 20 (char 15010). Skipping batch to maintain continuity.
+[2026-06-04 12:57:40 NPT] CIRCUIT BREAKER: Cleanly flushed batch 5 items from queue.
+[2026-06-04 12:57:44 NPT] PROCESSING: Found batch of 40 logs. Initiating AI cycle 6...
+[2026-06-04 12:58:20 NPT] WARNING: Malformed JSON on loop 6: Unterminated string starting at: line 20 column 7 (char 773). Skipping batch to maintain continuity.
+[2026-06-04 12:58:21 NPT] CIRCUIT BREAKER: Cleanly flushed batch 6 items from queue.
+[2026-06-04 12:58:24 NPT] PROCESSING: Found batch of 40 logs. Initiating AI cycle 7...
+[2026-06-04 12:59:01 NPT] WARNING: Malformed JSON on loop 7: Unterminated string starting at: line 15 column 20 (char 739). Skipping batch to maintain continuity.
+[2026-06-04 12:59:01 NPT] CIRCUIT BREAKER: Cleanly flushed batch 7 items from queue.
+[2026-06-04 12:59:04 NPT] PROCESSING: Found batch of 40 logs. Initiating AI cycle 8...
+[2026-06-04 12:59:40 NPT] WARNING: Malformed JSON on loop 8: Unterminated string starting at: line 15 column 20 (char 733). Skipping batch to maintain continuity.
+[2026-06-04 12:59:40 NPT] CIRCUIT BREAKER: Cleanly flushed batch 8 items from queue.
+[2026-06-04 12:59:44 NPT] PROCESSING: Found batch of 40 logs. Initiating AI cycle 9...
+[2026-06-04 13:00:18 NPT] WARNING: Malformed JSON on loop 9: Unterminated string starting at: line 20 column 18 (char 734). Skipping batch to maintain continuity.
+[2026-06-04 13:00:18 NPT] CIRCUIT BREAKER: Cleanly flushed batch 9 items from queue.
+[2026-06-04 13:00:21 NPT] PROCESSING: Found batch of 40 logs. Initiating AI cycle 10...
+[2026-06-04 13:00:56 NPT] WARNING: Malformed JSON on loop 10: Unterminated string starting at: line 152 column 7 (char 8665). Skipping batch to maintain continuity.
+[2026-06-04 13:00:57 NPT] CIRCUIT BREAKER: Cleanly flushed batch 10 items from queue.
+[2026-06-04 13:01:00 NPT] PROCESSING: Found batch of 27 logs. Initiating AI cycle 11...
+[2026-06-04 13:01:37 NPT] WARNING: Malformed JSON on loop 11: Expecting value: line 13 column 7 (char 752). Skipping batch to maintain continuity.
+[2026-06-04 13:01:37 NPT] CIRCUIT BREAKER: Cleanly flushed batch 11 items from queue.
+[2026-06-04 13:01:40 NPT] SUCCESS: No further unprocessed logs found. Cleared backlog across 11 cycles.
