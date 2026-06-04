@@ -29555,16 +29555,5 @@
     "node": "Droplet-NYC",
     "technique": "POST / HTTP/1.1\r\n0x%5B%5D=androxgh0st",
     "total_attacks": 1
-  },
-  {
-    "timestamp": "2026-06-04T10:51:57.884403+00:00",
-    "ip": "50.6.168.183",
-    "classification": "Network Scan",
-    "severity": "Low",
-    "risk_score": 1,
-    "summary": "A basic network ping or connection handshake was initiated without any specific payload.",
-    "node": "Droplet-LON",
-    "technique": "[PING] Connection handshake initiated without payload text.",
-    "total_attacks": 1
   }
 ]
