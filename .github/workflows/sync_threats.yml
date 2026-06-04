@@ -20,7 +20,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install Pipeline Dependencies
-        run: pip install requests pytz google-genai
+        run: pip install requests pytz google-genai pydantic
 
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
@@ -44,6 +44,8 @@ jobs:
           import pytz
           from google import genai
           from google.genai import types
+          from pydantic import BaseModel, Field
+          from typing import List
 
           log_filename = "pipeline_status.log"
           npt_timezone = pytz.timezone("Asia/Kathmandu")
@@ -54,6 +56,10 @@ jobs:
               with open(log_filename, "a") as f:
                   f.write(log_entry)
               print(message)
+          
+          if "SUPABASE_URL" not in os.environ or "SUPABASE_SERVICE_KEY" not in os.environ:
+              log_status("FAILURE: Environment variables missing. Ensure SUPABASE_URL and SUPABASE_SERVICE_KEY are set.")
+              sys.exit(1)
 
           url = os.environ["SUPABASE_URL"]
           key = os.environ["SUPABASE_SERVICE_KEY"]
@@ -62,6 +68,20 @@ jobs:
               "Authorization": f"Bearer {key}",
               "Content-Type": "application/json"
           }
+
+          class ThreatIntelRecord(BaseModel):
+              timestamp: str = Field(description="Extracted or original log ISO timestamp.")
+              ip: str = Field(description="Attacker IP Address.")
+              classification: str = Field(description="Accurate threat class short name.")
+              severity: str = Field(description="Log severity string: Low, Medium, High, Critical.")
+              risk_score: int = Field(description="Integer tracking threat rating between 1 and 10.")
+              summary: str = Field(description="1-sentence broad conceptual description of attack goal.")
+              node: str = Field(description="Origin honeypot tracker droplet name.")
+              technique: str = Field(description="Raw low-level technical signature or dirty command payloads found.")
+              total_attacks: int = Field(description="Count of requests packed inside this log session.")
+
+          class ThreatIntelBatch(BaseModel):
+              records: List[ThreatIntelRecord]
 
           prompt_instruction = (
               "You are an automated Cyber Threat Intelligence analyzer tracking a multi-node global honeypot network. "
@@ -87,7 +107,7 @@ jobs:
               "  \"risk_score\": 2,\n"
               "  \"summary\": \"A web scanner using curl initiated a standard GET request to the root directory.\",\n"
               "  \"node\": \"Droplet-BLR\",\n"
-              "  \"technique\": \"GET / HTTP/1.1\\r\\nHost: 168.144.120.121\\r\\nUser-Agent: curl/7.78.0\\r\\nAccept: */*\",\n"
+              "  \"technique\": \"GET / HTTP/1.1\\r\\nHost: 168.144.120.121\\r\\nUser-Agent: curl/7.78.0\\r\\nAccept: *\\/*\",\n"
               "  \"total_attacks\": 1\n"
               "}\n"
           )
@@ -128,7 +148,9 @@ jobs:
                       model="gemini-2.5-flash",
                       contents=full_payload,
                       config=types.GenerateContentConfig(
-                          response_mime_type="application/json"
+                          response_mime_type="application/json",
+                          response_schema=ThreatIntelBatch,
+                          max_output_tokens=8192  # Gives the model max headroom to write deep technical outputs
                       )
                   )
                   ai_text = response.text.strip()
@@ -137,10 +159,24 @@ jobs:
                   sys.exit(1)
               
               try:
-                  new_threat_records = json.loads(ai_text)
+                  parsed_batch = json.loads(ai_text)
+                  new_threat_records = parsed_batch.get("records", [])
               except Exception as e:
-                  log_status(f"FAILURE: Malformed JSON on loop {loop_count}: {e}")
-                  sys.exit(1)
+                  log_status(f"WARNING: Malformed JSON on loop {loop_count}: {e}. Skipping batch to maintain continuity.")
+                  
+                  processed_ids = [str(item['id']) for item in attacks]
+                  id_string = ",".join(processed_ids)
+                  update_url = f"{url}/rest/v1/intel_attacks?id=in.({id_string})"
+                  
+                  try:
+                      requests.patch(update_url, json={"processed_by_ai": True}, headers=headers, timeout=10)
+                      log_status(f"CIRCUIT BREAKER: Cleanly flushed batch {loop_count} items from queue.")
+                  except Exception as update_err:
+                      log_status(f"CRITICAL: Circuit breaker failed database commit: {str(update_err)}")
+                      sys.exit(1)
+                      
+                  time.sleep(3)
+                  continue
 
               feed_filename = "threat_feed.json"
               historical_data = []
@@ -165,13 +201,19 @@ jobs:
                   with open(feed_filename, "w") as f:
                       json.dump(final_feed, f, indent=2)
               
-              processed_ids = [item['id'] for item in attacks]
-              for item_id in processed_ids:
-                  update_url = f"{url}/rest/v1/intel_attacks?id=eq.{item_id}"
-                  requests.patch(update_url, json={"processed_by_ai": True}, headers=headers)
+              processed_ids = [str(item['id']) for item in attacks]
+              id_string = ",".join(processed_ids)
+              update_url = f"{url}/rest/v1/intel_attacks?id=in.({id_string})"
+              
+              try:
+                  update_response = requests.patch(update_url, json={"processed_by_ai": True}, headers=headers, timeout=10)
+                  if update_response.status_code not in [200, 204]:
+                      log_status(f"WARNING: Bulk status update returned status code {update_response.status_code}")
+              except Exception as e:
+                  log_status(f"FAILURE: Bulk state commitment faulted: {str(e)}")
+                  sys.exit(1)
               
               log_status(f"BATCH COMPLETE: Successfully committed cycle {loop_count}.")
-              
               time.sleep(3)
           EOF
 
