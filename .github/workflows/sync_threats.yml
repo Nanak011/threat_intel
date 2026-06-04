@@ -20,7 +20,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install Pipeline Dependencies
-        run: pip install requests google-genai pydantic
+        run: pip install requests google-genai pydantic pytz
 
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
@@ -38,13 +38,27 @@ jobs:
           import json
           import requests
           import sys
+          from datetime import datetime
+          import pytz
           from google import genai
           from google.genai import types
           from pydantic import BaseModel, Field
           from typing import List
 
+          # --- REGISTRATION OF FILE LOGGER ---
+          log_filename = "pipeline_status.log"
+          npt_timezone = pytz.timezone("Asia/Kathmandu")
+          
+          def log_status(message):
+              timestamp = datetime.now(npt_timezone).strftime("%Y-%m-%d %H:%M:%S")
+              log_entry = f"[{timestamp} NPT] {message}\n"
+              with open(log_filename, "a", encoding="utf-8") as f:
+                  f.write(log_entry)
+              print(message)
+
+          # --- STEP 1: ENV VERIFICATION ---
           if "SUPABASE_URL" not in os.environ or "SUPABASE_SERVICE_KEY" not in os.environ:
-              print(" ERROR: Environment variables missing!")
+              log_status("❌ ERROR: Environment variables missing!")
               sys.exit(1)
 
           URL = os.environ["SUPABASE_URL"]
@@ -55,6 +69,7 @@ jobs:
               "Content-Type": "application/json"
           }
 
+          # --- STEP 2: STRUCTURAL AI SCHEMAS ---
           class AIAnalysisItem(BaseModel):
               id: int = Field(description="The exact database integer ID of the log record.")
               classification: str = Field(description="Threat classification (e.g., Vulnerability Scan, Web Scanner).")
@@ -74,31 +89,33 @@ jobs:
           try:
               client = genai.Client(vertexai=True, project="intel-498005", location="us-central1")
           except Exception as e:
-              print(f"GenAI Client Init Error: {e}")
+              log_status(f"❌ GenAI Client Init Error: {e}")
               sys.exit(1)
 
+          # --- STEP 3: BACKLOG ITERATOR LOOP ---
           cycle = 1
           while True:
-              print(f"\n [CYCLE {cycle}] Fetching batch of 40 unprocessed logs...")
+              log_status(f"🔄 [CYCLE {cycle}] Fetching batch of 40 unprocessed logs...")
               
               try:
                   supabase_rest = f"{URL}/rest/v1/intel_attacks?processed_by_ai=eq.false&limit=40"
                   db_res = requests.get(supabase_rest, headers=HEADERS, timeout=10)
                   attacks = db_res.json()
               except Exception as e:
-                  print(f" Database Read Error on cycle {cycle}: {e}")
+                  log_status(f"❌ Database Read Error on cycle {cycle}: {e}")
                   sys.exit(1)
 
               if not attacks:
-                  print(f" SUCCESS: No further unprocessed logs found. Cleared backlog across {cycle - 1} cycles.")
+                  log_status(f"🎉 SUCCESS: No further unprocessed logs found. Cleared backlog across {cycle - 1} cycles.")
                   break
 
-              print(f" Fetched {len(attacks)} records from Supabase. Initiating AI matching processing...")
+              log_status(f"📥 Fetched {len(attacks)} records from Supabase. Initiating AI matching processing...")
               processed_ids = [str(item['id']) for item in attacks]
               original_attacks_map = {item["id"]: item for item in attacks}
 
+              # --- STEP 4: BATCH RUNNER WITH EXACT DICTIONARY MAPPING ---
               try:
-                  print(" Dispatching batch to Gemini (Analysis Only)...")
+                  log_status("🤖 Dispatching batch to Gemini (Analysis Only)...")
                   full_payload = f"{PROMPT_INSTRUCTION}\n\nRaw Logs:\n{json.dumps(attacks)}"
                   
                   response = client.models.generate_content(
@@ -149,19 +166,20 @@ jobs:
                   with open(feed_filename, "w", encoding="utf-8") as f:
                       json.dump(historical_data, f, indent=2)
                       
-                  print(f" Feed updated! Successfully committed {len(stitched_records)} items on cycle {cycle}.")
+                  log_status(f"💾 Feed updated! Successfully committed {len(stitched_records)} items on cycle {cycle}.")
 
               except Exception as crash_error:
-                  print(f" [BATCH SKIPPED] Gemini cut off or returned invalid structure on cycle {cycle}: {crash_error}")
-                  print("Skipping this batch to maintain workflow continuity...")
+                  log_status(f"⚠️ [BATCH SKIPPED] Gemini cut off or returned invalid structure on cycle {cycle}: {crash_error}")
+                  log_status("Skipping this batch to maintain workflow continuity...")
 
-              print(f" Flushing processed IDs for cycle {cycle} from the database queue...")
+              # --- STEP 5: FLUSH THE QUEUE FOR THIS CYCLE ---
+              log_status(f"🚀 Flushing processed IDs for cycle {cycle} from the database queue...")
               update_url = f"{URL}/rest/v1/intel_attacks?id=in.({','.join(processed_ids)})"
               try:
                   update_res = requests.patch(update_url, json={"processed_by_ai": True}, headers=HEADERS, timeout=10)
-                  print(f" Cycle {cycle} complete. Database synced. Status: {update_res.status_code}")
+                  log_status(f"✅ Cycle {cycle} complete. Database synced. Status: {update_res.status_code}")
               except Exception as e:
-                  print(f" Could not clear queue for cycle {cycle}: {e}")
+                  log_status(f"⚠️ Could not clear queue for cycle {cycle}: {e}")
 
               cycle += 1
           EOF
@@ -171,10 +189,11 @@ jobs:
         run: |
           git config --global user.name "automated-threat-intel-bot"
           git config --global user.email "actions@github.com"
-          git add threat_feed.json || true
+          git add threat_feed.json pipeline_status.log || true
           if git diff --staged --quiet; then
             echo "No structural logging changes detected."
           else
             git commit -m "Automated Multi-Node Intel Feed Update"
+            git pull --rebase origin main
             git push origin main
           fi
