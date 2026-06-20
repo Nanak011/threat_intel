@@ -263778,5 +263778,27 @@
     "node": "Droplet-NYC",
     "technique": "GET /.git/credentials HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Whale/1.5.75.9 Safari/537.36\r\nAccept-Charset: utf-8\r\nAccept-Encoding: gzip\r\nConnection: close",
     "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-20T17:07:13.386769+00:00",
+    "ip": "78.153.140.147",
+    "classification": "Sensitive File Disclosure",
+    "severity": "Medium",
+    "risk_score": 6,
+    "summary": "An attempt was made to access a sensitive environment configuration file.",
+    "node": "Droplet-LON",
+    "technique": "GET /.env HTTP/1.1\r\nHost: 134.209.18.105\r\nUser-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.5845.140 Safari/537.36\r\nAccept-Encoding: gzip, deflate\r\nAccept: */*\r\nConnection: keep-alive",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-20T17:07:18.318033+00:00",
+    "ip": "78.153.140.147",
+    "classification": "Web Scanner",
+    "severity": "Medium",
+    "risk_score": 5,
+    "summary": "A web scanner probed the application with a known vulnerability identification string.",
+    "node": "Droplet-LON",
+    "technique": "POST / HTTP/1.1\r\nHost: 134.209.18.105\r\nUser-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.5845.140 Safari/537.36\r\nAccept-Encoding: gzip, deflate\r\nAccept: */*\r\nConnection: keep-alive\r\nContent-Length: 20\r\nContent-Type: application/x-www-form-urlencoded\r\n\r\n0x%5B%5D=androxgh0st",
+    "total_attacks": 1
   }
 ]
