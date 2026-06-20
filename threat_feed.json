@@ -263646,5 +263646,137 @@
     "node": "Droplet-BLR",
     "technique": "OPTIONS / HTTP/1.1\r\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.199 Safari/537.36\r\nAccept-Encoding: gzip, deflate\r\nAccept: */*\r\nConnection: keep-alive\r\nContent-Type: application/x-www-form-urlencoded; charset=UTF-8\r\nHost: 168.144.120.121:80",
     "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-20T14:54:16.47825+00:00",
+    "ip": "78.153.140.147",
+    "classification": "Vulnerability Scan",
+    "severity": "High",
+    "risk_score": 8,
+    "summary": "An attempt was made to exploit potential vulnerabilities, possibly related to Androxgh0st, indicating a search for exposed credentials or configuration files.",
+    "node": "Droplet-LON",
+    "technique": "POST / HTTP/1.1\r\nHost: 134.209.18.105\r\nUser-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.5845.140 Safari/537.36\r\nAccept-Encoding: gzip, deflate\r\nAccept: */*\r\nConnection: keep-alive\r\nContent-Length: 20\r\nContent-Type: application/x-www-form-urlencoded\r\n\r\n0x%5B%5D=androxgh0st",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-20T14:54:18.40196+00:00",
+    "ip": "43.153.119.119",
+    "classification": "Web Access",
+    "severity": "Low",
+    "risk_score": 2,
+    "summary": "A standard web request was made to the root directory of the server.",
+    "node": "Droplet-BLR",
+    "technique": "GET / HTTP/1.1\r\nHost: 168.144.120.121:80\r\nUser-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1\r\nAccept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7\r\nAccept-Encoding: gzip\r\nAccept-Language: zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7\r\nCache-Control: no-cache\r\nConnection: keep-alive\r\nPragma: no-cache\r\nUpgrade-Insecure-Requests: 1\r\nConnection: close",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-20T14:57:13.232842+00:00",
+    "ip": "194.180.48.34",
+    "classification": "Information Disclosure Attempt",
+    "severity": "High",
+    "risk_score": 7,
+    "summary": "An attempt was made to access sensitive Git credential files, indicating a search for exposed repository information.",
+    "node": "Droplet-LON",
+    "technique": "GET /.git/credentials HTTP/1.1\r\nHost: 134.209.18.105\r\nUser-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 13_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0 Mobile/15E148 Safari/604.1\r\nAccept-Charset: utf-8\r\nAccept-Encoding: gzip\r\nConnection: close",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-20T14:59:13.605585+00:00",
+    "ip": "106.117.114.23",
+    "classification": "Web Access",
+    "severity": "Low",
+    "risk_score": 2,
+    "summary": "A standard web request was made to the root directory of the server.",
+    "node": "Droplet-BLR",
+    "technique": "GET / HTTP/1.1\r\nHost: 168.144.120.121\r\nUser-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36\r\nConnection: keep-alive",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-20T14:59:18.364282+00:00",
+    "ip": "110.83.4.107",
+    "classification": "Web Access",
+    "severity": "Low",
+    "risk_score": 1,
+    "summary": "A routine request was made for the website's favicon.",
+    "node": "Droplet-BLR",
+    "technique": "GET /favicon.ico HTTP/1.1\r\nHost: 168.144.120.121\r\nUser-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36\r\nConnection: close",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-20T14:59:23.087893+00:00",
+    "ip": "113.57.186.170",
+    "classification": "Web Access",
+    "severity": "Low",
+    "risk_score": 1,
+    "summary": "A routine request was made for the website's favicon.",
+    "node": "Droplet-BLR",
+    "technique": "GET /favicon.ico HTTP/1.1\r\nHost: 168.144.120.121\r\nUser-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36\r\nConnection: keep-alive",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-20T15:01:31.621824+00:00",
+    "ip": "50.116.49.221",
+    "classification": "Web Access",
+    "severity": "Low",
+    "risk_score": 2,
+    "summary": "A standard web request was made to the root directory of the server.",
+    "node": "Droplet-LON",
+    "technique": "GET / HTTP/1.1\r\nHost: 134.209.18.105\r\nUser-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-20T15:09:29.224695+00:00",
+    "ip": "78.153.140.149",
+    "classification": "Information Disclosure Attempt",
+    "severity": "High",
+    "risk_score": 7,
+    "summary": "An attempt was made to access the '.env' file, which could lead to sensitive configuration disclosure.",
+    "node": "Droplet-NYC",
+    "technique": "GET /.env HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.5845.140 Safari/537.36\r\nAccept-Encoding: gzip, deflate\r\nAccept: */*\r\nConnection: keep-alive",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-20T15:09:33.985628+00:00",
+    "ip": "78.153.140.149",
+    "classification": "Vulnerability Scan",
+    "severity": "High",
+    "risk_score": 8,
+    "summary": "An attempt was made to exploit potential vulnerabilities, possibly related to Androxgh0st, indicating a search for exposed credentials or configuration files.",
+    "node": "Droplet-NYC",
+    "technique": "POST / HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.5845.140 Safari/537.36\r\nAccept-Encoding: gzip, deflate\r\nAccept: */*\r\nConnection: keep-alive\r\nContent-Length: 20\r\nContent-Type: application/x-www-form-urlencoded\r\n\r\n0x%5B%5D=androxgh0st",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-20T15:13:55.57534+00:00",
+    "ip": "204.76.203.36",
+    "classification": "Web Scanner",
+    "severity": "Medium",
+    "risk_score": 5,
+    "summary": "A request to an application-specific path suggests reconnaissance by a web scanner probing for known SDK endpoints.",
+    "node": "Droplet-NYC",
+    "technique": "GET /SDK/webLanguage HTTP/1.1\r\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 Edg/90.0.818.46\r\nAccept-Encoding: gzip, deflate\r\nAccept: */*\r\nConnection: keep-alive\r\nX-Requested-With: XMLHttpRequest\r\nContent-Type: application/x-www-form-urlencoded; charset=UTF-8\r\nAccept-Encoding: gzip, deflate\r\nAccept-Language: en US,en;q=0.9,sv;q=0.8\r\nHost: 147.182.128.36:80",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-20T15:15:50.217668+00:00",
+    "ip": "194.180.48.34",
+    "classification": "Information Disclosure Attempt",
+    "severity": "High",
+    "risk_score": 7,
+    "summary": "An attempt was made to access the Git configuration file, which could expose repository settings.",
+    "node": "Droplet-BLR",
+    "technique": "GET /.git/config HTTP/1.1\r\nHost: 168.144.120.121\r\nUser-Agent: Mozilla/5.0 (Linux; Android 9; ASUS_X00TD) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.111 Mobile Safari/537.36\r\nAccept-Charset: utf-8\r\nAccept-Encoding: gzip\r\nConnection: close",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-20T15:23:50.485453+00:00",
+    "ip": "195.178.110.162",
+    "classification": "Information Disclosure Attempt",
+    "severity": "High",
+    "risk_score": 7,
+    "summary": "An attempt was made to access sensitive Git credential files, indicating a search for exposed repository information.",
+    "node": "Droplet-NYC",
+    "technique": "GET /.git/credentials HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Whale/1.5.75.9 Safari/537.36\r\nAccept-Charset: utf-8\r\nAccept-Encoding: gzip\r\nConnection: close",
+    "total_attacks": 1
   }
 ]
