@@ -284150,5 +284150,192 @@
     "node": "Droplet-LON",
     "technique": "GET / HTTP/1.0\r\nHost: 134.209.18.105\r\nUser-Agent: Shodan-Pull/1.0\r\nConnection: close",
     "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-22T22:57:30.255088+00:00",
+    "ip": "152.32.142.86",
+    "classification": "Network Scan",
+    "severity": "Low",
+    "risk_score": 2,
+    "summary": "A connection handshake was initiated, possibly for network scanning purposes.",
+    "node": "Droplet-NYC",
+    "technique": "[PING] Connection handshake initiated without payload text.",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-22T22:57:40.43812+00:00",
+    "ip": "152.32.142.86",
+    "classification": "Service Discovery",
+    "severity": "Low",
+    "risk_score": 3,
+    "summary": "An attempt was made to discover services, possibly targeting T3 protocol.",
+    "node": "Droplet-NYC",
+    "technique": "t3 12.1.2\nAS:2048\nHL:19",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-22T22:58:23.329395+00:00",
+    "ip": "47.95.15.199",
+    "classification": "Network Scan",
+    "severity": "Low",
+    "risk_score": 2,
+    "summary": "A connection handshake was initiated, possibly for network scanning purposes.",
+    "node": "Droplet-BLR",
+    "technique": "[PING] Connection handshake initiated without payload text.",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-22T23:05:25.734285+00:00",
+    "ip": "50.116.49.221",
+    "classification": "Web Scan",
+    "severity": "Low",
+    "risk_score": 2,
+    "summary": "A standard HTTP GET request was made to the web server root.",
+    "node": "Droplet-NYC",
+    "technique": "GET / HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-22T23:12:06.50838+00:00",
+    "ip": "78.153.140.148",
+    "classification": "Information Disclosure Attempt",
+    "severity": "Medium",
+    "risk_score": 6,
+    "summary": "An attempt was made to access a potentially sensitive .env configuration file.",
+    "node": "Droplet-NYC",
+    "technique": "GET /.env HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.5845.140 Safari/537.36\r\nAccept-Encoding: gzip, deflate\r\nAccept: */*\r\nConnection: keep-alive",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-22T23:12:10.993326+00:00",
+    "ip": "78.153.140.148",
+    "classification": "Web Application Attack",
+    "severity": "High",
+    "risk_score": 8,
+    "summary": "A POST request containing an \"androxgh0st\" payload suggests a web application attack or vulnerability scan.",
+    "node": "Droplet-NYC",
+    "technique": "POST / HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.5845.140 Safari/537.36\r\nAccept-Encoding: gzip, deflate\r\nAccept: */*\r\nConnection: keep-alive\r\nContent-Length: 20\r\nContent-Type: application/x-www-form-urlencoded\r\n\r\n0x%5B%5D=androxgh0st",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-22T23:12:50.394389+00:00",
+    "ip": "176.65.139.66",
+    "classification": "Internet Scanner",
+    "severity": "Low",
+    "risk_score": 3,
+    "summary": "A Shodan internet scanner performed reconnaissance by requesting the root of the web server.",
+    "node": "Droplet-NYC",
+    "technique": "GET / HTTP/1.0\r\nHost: 147.182.128.36\r\nUser-Agent: Shodan-Pull/1.0\r\nConnection: close",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-22T23:13:10.952773+00:00",
+    "ip": "47.253.132.225",
+    "classification": "Web Scan",
+    "severity": "Low",
+    "risk_score": 2,
+    "summary": "A standard HTTP GET request was made to the web server root.",
+    "node": "Droplet-NYC",
+    "technique": "GET / HTTP/1.1\r\nHost: 147.182.128.36:80\r\nUser-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 11) AppleWebKit/538.41 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36\r\nAccept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9\r\nAccept-Language: en-US,en;q=0.9,zh-TW;q=0.8,zh-HK;q=0.7,zh-CN;q=0.6,zh;q=0.5\r\nAccept-Encoding: gzip\r\nConnection: close",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-22T23:13:06.155168+00:00",
+    "ip": "47.253.132.225",
+    "classification": "Network Scan",
+    "severity": "Low",
+    "risk_score": 2,
+    "summary": "A connection handshake was initiated, possibly for network scanning purposes.",
+    "node": "Droplet-NYC",
+    "technique": "[PING] Connection handshake initiated without payload text.",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-22T23:13:15.700785+00:00",
+    "ip": "47.253.132.225",
+    "classification": "Benign Request",
+    "severity": "Low",
+    "risk_score": 1,
+    "summary": "A request was made for the favicon.ico, which is typically a benign browser behavior.",
+    "node": "Droplet-NYC",
+    "technique": "GET /favicon.ico HTTP/1.1\r\nHost: 147.182.128.36:80\r\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36\r\nAccept: image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9\r\nAccept-Encoding: gzip\r\nConnection: close",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-22T23:29:28.21746+00:00",
+    "ip": "77.83.39.14",
+    "classification": "Information Disclosure Attempt",
+    "severity": "Medium",
+    "risk_score": 6,
+    "summary": "An attempt was made to access the .git/config file, which could expose sensitive repository information.",
+    "node": "Droplet-LON",
+    "technique": "GET /.git/config HTTP/1.1\r\nHost: 134.209.18.105\r\nUser-Agent: Mozilla/5.0 (Linux; Android 9; SM-A705GM) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.143 Mobile Safari/537.36\r\nAccept-Charset: utf-8\r\nAccept-Encoding: gzip\r\nConnection: close",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-22T23:36:28.485071+00:00",
+    "ip": "50.116.26.161",
+    "classification": "Network Scan",
+    "severity": "Low",
+    "risk_score": 2,
+    "summary": "A connection handshake was initiated, possibly for network scanning purposes.",
+    "node": "Droplet-NYC",
+    "technique": "[PING] Connection handshake initiated without payload text.",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-22T23:36:29.473189+00:00",
+    "ip": "45.79.115.59",
+    "classification": "Network Scan",
+    "severity": "Low",
+    "risk_score": 2,
+    "summary": "A connection handshake was initiated, possibly for network scanning purposes.",
+    "node": "Droplet-LON",
+    "technique": "[PING] Connection handshake initiated without payload text.",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-22T23:39:11.282891+00:00",
+    "ip": "172.235.40.131",
+    "classification": "Web Scan",
+    "severity": "Low",
+    "risk_score": 2,
+    "summary": "A standard HTTP GET request was made to the web server root.",
+    "node": "Droplet-NYC",
+    "technique": "GET / HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-22T23:39:19.015292+00:00",
+    "ip": "146.190.57.24",
+    "classification": "Internet Scanner",
+    "severity": "Low",
+    "risk_score": 3,
+    "summary": "A ZGrab internet scanner performed reconnaissance by requesting the root of the web server.",
+    "node": "Droplet-LON",
+    "technique": "GET / HTTP/1.1\r\nHost: 134.209.18.105\r\nUser-Agent: Mozilla/5.0 zgrab/0.x\r\nAccept: */*\r\nAccept-Encoding: gzip",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-22T23:39:52.186529+00:00",
+    "ip": "172.236.228.197",
+    "classification": "Web Scan",
+    "severity": "Low",
+    "risk_score": 2,
+    "summary": "A standard HTTP GET request was made to the web server root.",
+    "node": "Droplet-LON",
+    "technique": "GET / HTTP/1.1\r\nHost: 134.209.18.105\r\nUser-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-22T23:44:10.491972+00:00",
+    "ip": "77.83.39.14",
+    "classification": "Information Disclosure Attempt",
+    "severity": "Medium",
+    "risk_score": 6,
+    "summary": "An attempt was made to access the .git/config file, which could expose sensitive repository information.",
+    "node": "Droplet-NYC",
+    "technique": "GET /.git/config HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: LG-GC900/V10a Obigo/WAP2.0 Profile/MIDP-2.1 Configuration/CLDC-1.1\r\nAccept-Charset: utf-8\r\nAccept-Encoding: gzip\r\nConnection: close",
+    "total_attacks": 1
   }
 ]
