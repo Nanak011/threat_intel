@@ -357245,5 +357245,181 @@
     "node": "Droplet-NYC",
     "technique": "GET /favicon.ico HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: Openwave/ UCWEB7.0.2.37/28/999\r\nAccept: */*\r\nAccept-Encoding: deflate, gzip",
     "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-27T14:34:30.062147+00:00",
+    "ip": "69.164.217.74",
+    "classification": "Network Activity",
+    "severity": "Low",
+    "risk_score": 1,
+    "summary": "A simple network connection handshake was initiated without additional payload data.",
+    "node": "Droplet-LON",
+    "technique": "[PING] Connection handshake initiated without payload text.",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-27T14:34:42.73243+00:00",
+    "ip": "172.236.228.218",
+    "classification": "Web Browsing",
+    "severity": "Low",
+    "risk_score": 1,
+    "summary": "A standard web request was made to the root path of the host.",
+    "node": "Droplet-LON",
+    "technique": "GET / HTTP/1.1\r\nHost: 134.209.18.105\r\nUser-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-27T14:38:39.70182+00:00",
+    "ip": "216.244.66.228",
+    "classification": "Web Scanner",
+    "severity": "Low",
+    "risk_score": 1,
+    "summary": "A legitimate search engine bot requested the robots.txt file for crawling instructions.",
+    "node": "Droplet-LON",
+    "technique": "GET /robots.txt HTTP/1.1\r\nHost: ecomm.ui.justgrow.co\r\nAccept: */*\r\nUser-agent: Mozilla/5.0 (compatible; DotBot/1.2; +https://opensiteexplorer.org/dotbot; help@moz.com)\r\nAccept-Charset: utf-8;q=0.7,iso-8859-1;q=0.2,*;q=0.1",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-27T14:48:50.76895+00:00",
+    "ip": "167.94.146.53",
+    "classification": "Internet Scan",
+    "severity": "Low",
+    "risk_score": 2,
+    "summary": "An internet-wide scanner initiated a request to the root path of the host for reconnaissance.",
+    "node": "Droplet-BLR",
+    "technique": "GET / HTTP/1.1\r\nHost: 168.144.120.121\r\nUser-Agent: Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)\r\nAccept: */*\r\nAccept-Encoding: gzip",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-27T14:48:59.794601+00:00",
+    "ip": "167.94.146.53",
+    "classification": "Internet Scan",
+    "severity": "Low",
+    "risk_score": 2,
+    "summary": "An internet-wide scanner requested the favicon.ico file during its reconnaissance phase.",
+    "node": "Droplet-BLR",
+    "technique": "GET /favicon.ico HTTP/1.1\r\nHost: 168.144.120.121\r\nUser-Agent: Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)\r\nAccept-Encoding: gzip\r\nConnection: close",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-27T14:49:14.983075+00:00",
+    "ip": "167.94.146.53",
+    "classification": "Internet Scan",
+    "severity": "Low",
+    "risk_score": 2,
+    "summary": "An internet-wide scanner requested the robots.txt file for reconnaissance.",
+    "node": "Droplet-BLR",
+    "technique": "GET /robots.txt HTTP/1.1\r\nHost: 168.144.120.121\r\nUser-Agent: Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)\r\nAccept: */*\r\nAccept-Encoding: gzip",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-27T14:49:19.775082+00:00",
+    "ip": "167.94.146.53",
+    "classification": "Internet Scan",
+    "severity": "Low",
+    "risk_score": 2,
+    "summary": "An internet-wide scanner requested the favicon.ico file during its reconnaissance phase.",
+    "node": "Droplet-BLR",
+    "technique": "GET /favicon.ico HTTP/1.1\r\nHost: 168.144.120.121\r\nUser-Agent: Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)\r\nAccept-Encoding: gzip\r\nConnection: close",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-27T14:50:10.963106+00:00",
+    "ip": "78.153.140.148",
+    "classification": "Vulnerability Scan",
+    "severity": "Medium",
+    "risk_score": 6,
+    "summary": "An attempt was made to access a potentially sensitive .env configuration file.",
+    "node": "Droplet-NYC",
+    "technique": "GET /.env HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.5845.140 Safari/537.36\r\nAccept-Encoding: gzip, deflate\r\nAccept: */*\r\nConnection: keep-alive",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-27T14:50:15.724311+00:00",
+    "ip": "78.153.140.148",
+    "classification": "Exploitation Attempt",
+    "severity": "High",
+    "risk_score": 8,
+    "summary": "A POST request was made with a payload potentially indicative of an Androxgh0st web application attack.",
+    "node": "Droplet-NYC",
+    "technique": "POST / HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.5845.140 Safari/537.36\r\nAccept-Encoding: gzip, deflate\r\nAccept: */*\r\nConnection: keep-alive\r\nContent-Length: 20\r\nContent-Type: application/x-www-form-urlencoded\r\n\r\n0x%5B%5D=androxgh0st",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-27T14:52:59.037888+00:00",
+    "ip": "110.10.176.24",
+    "classification": "Reconnaissance",
+    "severity": "Low",
+    "risk_score": 3,
+    "summary": "A command-line client requested the robots.txt file for site information.",
+    "node": "Droplet-BLR",
+    "technique": "GET /robots.txt HTTP/1.1\r\nHost: 168.144.120.121\r\nUser-Agent: curl/8.14.1\r\nAccept: */*",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-27T15:01:42.305902+00:00",
+    "ip": "185.242.226.112",
+    "classification": "Web Browsing",
+    "severity": "Low",
+    "risk_score": 1,
+    "summary": "A standard web request was made to the root path of the host.",
+    "node": "Droplet-NYC",
+    "technique": "GET / HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.190 Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-27T15:02:07.835672+00:00",
+    "ip": "77.83.39.14",
+    "classification": "Vulnerability Scan",
+    "severity": "Medium",
+    "risk_score": 6,
+    "summary": "An attempt was made to access a Git configuration file, which could disclose sensitive repository information.",
+    "node": "Droplet-LON",
+    "technique": "GET /.git/config HTTP/1.1\r\nHost: 134.209.18.105\r\nUser-Agent: Mozilla/5.0 (Linux; Android 8.0.0; LDN-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.111 Mobile Safari/537.36\r\nAccept-Charset: utf-8\r\nAccept-Encoding: gzip\r\nConnection: close",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-27T15:05:10.062958+00:00",
+    "ip": "64.227.99.233",
+    "classification": "Vulnerability Scan",
+    "severity": "High",
+    "risk_score": 7,
+    "summary": "A ZGrab scanner attempted to access the Squid cache manager interface, a potential target for information disclosure or proxy abuse.",
+    "node": "Droplet-LON",
+    "technique": "GET /squid-internal-mgr/cachemgr.cgi HTTP/1.1\r\nHost: 134.209.18.105\r\nUser-Agent: Mozilla/5.0 zgrab/0.x\r\nAccept: */*\r\nAccept-Encoding: gzip",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-27T15:19:52.45834+00:00",
+    "ip": "187.108.1.142",
+    "classification": "Internet Scan",
+    "severity": "Low",
+    "risk_score": 2,
+    "summary": "A mass scanning tool initiated a request to the root path of the host for port and service discovery.",
+    "node": "Droplet-BLR",
+    "technique": "GET / HTTP/1.0\r\nUser-Agent: ivre-masscan/1.3 https://github.com/robertdavidgraham/\r\nAccept: */*",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-27T15:37:40.631796+00:00",
+    "ip": "172.236.228.227",
+    "classification": "Web Browsing",
+    "severity": "Low",
+    "risk_score": 1,
+    "summary": "A standard web request was made to the root path of the host.",
+    "node": "Droplet-LON",
+    "technique": "GET / HTTP/1.1\r\nHost: 134.209.18.105\r\nUser-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36\r\nAccept: */*\r\nAccept-Encoding: gzip",
+    "total_attacks": 1
+  },
+  {
+    "timestamp": "2026-06-27T15:48:30.109618+00:00",
+    "ip": "77.83.39.14",
+    "classification": "Vulnerability Scan",
+    "severity": "Medium",
+    "risk_score": 6,
+    "summary": "An attempt was made to access a Git configuration file, which could disclose sensitive repository information.",
+    "node": "Droplet-NYC",
+    "technique": "GET /.git/config HTTP/1.1\r\nHost: 147.182.128.36\r\nUser-Agent: Mozilla/5.0 (Linux; Android 7.0; SM-N9200) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.111 Mobile Safari/537.36\r\nAccept-Charset: utf-8\r\nAccept-Encoding: gzip\r\nConnection: close",
+    "total_attacks": 1
   }
 ]
