@@ -33,4 +33,5 @@ The interactive 3D threat globe and live analysis table are deployed and streami
 * **Deduplication Shield:** The processing engine builds unique signature hashes based on `IP | Classification | Node Location`. Repeating brute-force or socket-flooding attacks are consolidated dynamically to keep frontend loading speeds optimized.
 * **Fail-Safe Execution State:** Database sync state flags mutate *inside* the secure execution thread before repository updates commit. This eliminates duplicate token processing even during upstream network connection drops.
 
-<img width="1919" height="971" alt="image" src="https://github.com/user-attachments/assets/9d50f8db-3543-4076-b26a-3d8f0b02134c" />
+<img width="1918" height="907" alt="image" src="https://github.com/user-attachments/assets/09ffa1bb-94f6-400c-b2b1-3511c4826c2a" />
+
