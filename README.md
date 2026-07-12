@@ -1,5 +1,7 @@
 # Multi-Node Global Honeypot Network & Automated Threat Intel Pipeline
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21323323.svg)](https://doi.org/10.5281/zenodo.21323323)
+
 An automated, cloud-native Cyber Threat Intelligence (CTI) pipeline that captures live reconnaissance traffic across multiple global edge locations, processes payloads using AI, and maps them onto a dynamic frontend dashboard.
 
 ## Live Deployment
