@@ -233,7 +233,7 @@
 
     async function loadThreatIntel() {
         try {
-            const response = await fetch('https://raw.githubusercontent.com/Nanak011/threat_intel/main/threat_feed.json');
+            const response = await fetch('https://raw.githubusercontent.com/Nanak011/threat_intel/main/threat_feed_cleaned.json');
             fullThreatDataset = await response.json();
             calculateMetrics(fullThreatDataset);
             renderLogFeed(fullThreatDataset);

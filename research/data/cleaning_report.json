@@ -1,0 +1,17 @@
+{
+  "total_rows": 47598,
+  "rows_remapped_out_of_schema": 71,
+  "fallback_severity_used": "Low",
+  "unique_payload_strings": 17218,
+  "payload_groups_with_repeats": 3249,
+  "unstable_payload_groups": 1641,
+  "instability_rate_pct": 50.51,
+  "groups_requiring_tie_break": 769,
+  "rows_changed_by_majority_vote": 6839,
+  "final_severity_distribution": {
+    "Low": 14619,
+    "Medium": 8108,
+    "Critical": 9739,
+    "High": 15132
+  }
+}
