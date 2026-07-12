@@ -24,8 +24,7 @@ Full legal text: https://creativecommons.org/licenses/by/4.0/legalcode
 
 ## Suggested citation
 
-> [Gurunanak Adhikari]. *Multi-Node Honeypot Threat Intelligence
-> Dataset*. [2026]. Available at: github.com/nanak011/threat_intel
+Adhikari, G. (2026). Multi-Node Honeypot HTTP Threat Intelligence Dataset (May-July 2026), Gemini 2.5-Labeled [Data set]. Zenodo. https://doi.org/10.5281/zenodo.21323323
 
 ## Notes on the data
 
