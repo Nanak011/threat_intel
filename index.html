@@ -257,7 +257,7 @@
     async function loadThreatIntel() {
         try {
             const [rawResponse, geoResponse] = await Promise.all([
-                fetch('https://raw.githubusercontent.com/Nanak011/threat_intel/main/threat_feed.json'),
+                fetch('https://raw.githubusercontent.com/Nanak011/threat_intel/main/threat_feed_cleaned.json'),
                 fetch('threat_feed_resolved.json')
             ]);
 
